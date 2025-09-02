@@ -12,7 +12,7 @@ WoWApp is a simple ASP.NET Core Razor Pages application that allows you to view 
 
 1. Clone the repository:
    ```bash
-   git clone <your-repo-url>
+   git clone (https://github.com/samlynchmww/WoWApp.git)
 Navigate to the project directory and open it in Visual Studio 2022.
 
 Configure Blizzard API credentials using dotnet user-secrets:
