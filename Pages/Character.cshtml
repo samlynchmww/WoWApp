@@ -1,0 +1,42 @@
+@page
+@model CharacterModel
+@{
+    ViewData["Title"] = "WoW Character Viewer";
+}
+
+<h1>World of Warcraft Character Viewer</h1>
+
+<form method="post">
+    <div>
+        <label>Realm:</label>
+        <input type="text" name="Realm" value="@Model.Realm" required />
+    </div>
+    <div>
+        <label>Character Name:</label>
+        <input type="text" name="CharacterName" value="@Model.CharacterName" required />
+    </div>
+    <button type="submit">Search</button>
+</form>
+
+@if (!ModelState.IsValid)
+{
+    <div style="color:red">
+        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+@if (Model.CharacterData != null)
+{
+    <h2>@Model.CharacterName from @Model.Realm</h2>
+    <pre>@Model.CharacterData.RootElement.ToString()</pre>
+}
+else if (Model.ArmoryLink != null)
+{
+    <h2>Character not available via API</h2>
+    <p>
+        View in Armory: <a href="@Model.ArmoryLink" target="_blank">@Model.CharacterName</a>
+    </p>
+}
